@@ -26,7 +26,6 @@ body {
 }
 
 /* ─── Responsive: Sidebar ─────────────────────────────────── */
-/* ─── Responsive: Sidebar ─────────────────────────────────── */
 @media (max-width: 768px) {
   .sidebar-root {
     position: absolute !important;

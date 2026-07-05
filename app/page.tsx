@@ -31,7 +31,7 @@ export default function Home() {
       color: "#d4d4d4"
     }}>
 
-      {/* Mobile sidebar overlay */}
+      {/* Mobile sidebar overlay backdrop */}
       {mobileSidebarOpen && (
         <div
           className="sidebar-overlay"
