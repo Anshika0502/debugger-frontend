@@ -85,7 +85,7 @@ export default function ChatInput({ appState, code: parentCode, description: par
   return (
 
 
-    <div style={{
+    <div className="chat-container" style={{
       flex: 1,
       display: "flex",
       flexDirection: "column",
@@ -99,13 +99,13 @@ export default function ChatInput({ appState, code: parentCode, description: par
 
       {/* HERO — shown in idle AND running (no blank space during processing) */}
       {(appState === "idle" || appState === "running") && (
-        <div style={{
+        <div className="chat-hero" style={{
           textAlign: "center",
           marginBottom: "2rem",
           width: "100%", maxWidth: "760px",
           flexShrink: 0
         }}>
-          <div style={{
+          <div className="chat-hero-icon" style={{
             width: "56px", height: "56px", borderRadius: "14px",
             backgroundColor: "#252526", border: "1px solid #3e3e42",
             display: "flex", alignItems: "center", justifyContent: "center",
@@ -118,7 +118,7 @@ export default function ChatInput({ appState, code: parentCode, description: par
             <span style={{ color: "#6a6a6a", fontSize: "22px" }}>()</span>
           </h1>
           {appState === "idle" && (
-            <div style={{
+            <div className="chat-pill-tags" style={{
               display: "flex", gap: "8px",
               flexWrap: "wrap",
               justifyContent: "center",
@@ -148,7 +148,7 @@ export default function ChatInput({ appState, code: parentCode, description: par
       )}
 
       {/* MAIN BOX — anchored at bottom, expands upward */}
-      <div style={{
+      <div className="chat-main-box" style={{
         width: "100%", maxWidth: "760px",
         display: "flex", flexDirection: "column",
         maxHeight: "calc(100vh - 140px)",
@@ -157,7 +157,7 @@ export default function ChatInput({ appState, code: parentCode, description: par
 
         {/* RESULTS / CODE — scrollable area above input */}
         {(appState === "running" || appState === "done" ) && (
-          <div style={{
+          <div className="results-panel" style={{
             backgroundColor: "#1c1c1c",
             border: "1px solid #2a2a2a",
             borderBottom: "none",
@@ -213,7 +213,7 @@ export default function ChatInput({ appState, code: parentCode, description: par
             {appState === "done" && result && (
               <>
                 {result.root_cause && (
-                  <div style={{
+                  <div className="result-card" style={{
                     backgroundColor: "#252526", border: "1px solid #3e3e42",
                     borderRadius: "8px", padding: "14px 18px"
                   }}>
@@ -227,7 +227,7 @@ export default function ChatInput({ appState, code: parentCode, description: par
                 )}
 
                 {result.explanation && (
-                  <div style={{
+                  <div className="result-card" style={{
                     backgroundColor: "#252526", border: "1px solid #3e3e42",
                     borderRadius: "8px", padding: "14px 18px"
                   }}>
@@ -320,7 +320,7 @@ export default function ChatInput({ appState, code: parentCode, description: par
                   background: "radial-gradient(ellipse, rgba(152,195,121,0.25) 0%, transparent 70%)"
                 }} />
               </div>
-              <div style={{
+              <div className="chat-code-area" style={{
                 display: "flex",
                 backgroundColor: "#1e1e1e",
                 maxHeight: "260px",
@@ -352,7 +352,7 @@ export default function ChatInput({ appState, code: parentCode, description: par
           )}
 
           {/* Bottom bar */}
-          <div style={{
+          <div className="chat-input-bar" style={{
             display: "flex", alignItems: "center", gap: "8px",
             padding: "10px 12px", borderTop: "1px solid #2a2a2a",
             backgroundColor: "#252526"
@@ -434,7 +434,7 @@ export default function ChatInput({ appState, code: parentCode, description: par
 </div>
 
             {/* Description — blue blur */}
-            <div style={{
+            <div className="chat-description-input" style={{
               flex: 1,
               background: "radial-gradient(ellipse at left, rgba(86,156,214,0.08) 0%, transparent 60%)",
               border: "1px solid #3e3e42", borderRadius: "8px",
@@ -448,13 +448,14 @@ export default function ChatInput({ appState, code: parentCode, description: par
                 onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey && appState === "idle") handleSubmit() }}
                 style={{
                   flex: 1, backgroundColor: "transparent", border: "none",
-                  color: "#d4d4d4", fontSize: "12px", fontFamily: "inherit", outline: "none"
+                  color: "#d4d4d4", fontSize: "12px", fontFamily: "inherit", outline: "none",
+                  minWidth: 0
                 }}
               />
             </div>
 
             {/* Language */}
-            <select value={language} onChange={e => setLanguage(e.target.value)} style={{
+            <select className="lang-select" value={language} onChange={e => setLanguage(e.target.value)} style={{
               backgroundColor: "#1e1e1e", border: "1px solid #3e3e42",
               borderRadius: "6px", color: "#ce9178", padding: "6px 8px",
               fontSize: "11px", fontFamily: "inherit", cursor: "pointer", outline: "none"
@@ -522,7 +523,8 @@ export default function ChatInput({ appState, code: parentCode, description: par
         backgroundColor: "#252526", border: "1px solid #3e3e42",
         borderLeft: "3px solid #c586c0",
         borderRadius: "8px", padding: "12px 16px",
-        display: "flex", gap: "12px", alignItems: "flex-start"
+        display: "flex", gap: "12px", alignItems: "flex-start",
+        flexWrap: "wrap"
       }}>
         <img
           src={images[0]}
@@ -533,7 +535,7 @@ export default function ChatInput({ appState, code: parentCode, description: par
             border: "1px solid #3e3e42", flexShrink: 0
           }}
         />
-        <div>
+        <div style={{ minWidth: 0, flex: 1 }}>
           <div style={{
             color: "#c586c0", fontSize: "10px",
             letterSpacing: "0.1em", marginBottom: "4px", fontWeight: "600"
